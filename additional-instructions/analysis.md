@@ -92,3 +92,101 @@ ADC W0, W0, W0
 ```
 
 **Answer:** ```W0 = 0x00020003```
+
+### 9.
+
+Starting value of W0 is ```0x12345678```
+
+**a)**
+
+After each instruction:
+```Assembly
+MOV W1, 0xABCD0000
+```
+
+```
+W0 = 0x12345678
+W1 = 0xABCD0000
+```
+---
+```Assembly
+UBFX W2, W0, 24, 8
+```
+
+```
+W0 = 0x12345678
+W1 = 0xABCD0000
+W2 = 0x00000012
+```
+---
+```Assembly
+BFI W1, W2, 16, 8
+```
+
+```
+W2 = 0x00000012
+```
+
+**Answer:** ```W1 = 0xAB120000```
+
+**b)**
+
+After each instruction:
+```Assembly
+REV W1, W0
+```
+
+```
+W0 = 0x12345678
+W1 = 0x78563412
+```
+---
+```Assembly
+AND W1, W1, W1, ASR 16
+```
+
+```
+W1, ASR 16 = 0x00007856 (arithmetic shift right, 16 bits)
+```
+Therefore:
+```
+W0 = 0x12345678
+W1 = 0x00003012
+```
+---
+```Assembly
+REV W1, W1
+```
+
+```
+W0 = 0x12345678
+W1 = 0x12300000
+```
+---
+```Assembly
+SUB W1, W0, W1
+```
+
+**Answer:** ```W1 = 0x00045678```
+
+**c)**
+
+After each instruction:
+```Assembly
+EON X1, X1, X1
+```
+
+```
+X0 = 0x 0000 0000 1234 5678
+X1 = 0x FFFF FFFF FFFF FFFF
+```
+---
+```Assembly
+ADD X1, X1, X0, SXTB 4
+```
+
+```
+X0, SXTB 4 = 0x 0000 0000 0000 0078, LSL 4 = 0x 0000 0000 0000 0780
+```
+
+**Answer:** ```0x 0000 0000 0000 077F```
