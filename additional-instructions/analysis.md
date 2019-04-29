@@ -190,3 +190,28 @@ X0, SXTB 4 = 0x 0000 0000 0000 0078, LSL 4 = 0x 0000 0000 0000 0780
 ```
 
 **Answer:** ```0x 0000 0000 0000 077F```
+
+### 10.
+Meaning of the value stored in X0 after instructions
+
+**a)**
+
+```Assembly
+CMP X0, 0
+CNEG X0, X0, LT
+```
+
+**Answer:** The absolute value of X0 (value X0 is negated if it is less than 0)
+
+**b)**
+
+```Assembly
+CMP X1, X2
+CSEL X0, X1, X2, GT
+CMP X0, X3
+CSEL X0, X0, X3, GT
+```
+
+**Answer:** The greatest (signed) value between X1, X2 and X3.
+In the first comparison, X0 takes the value of ```MAX(X1, X2)```.
+In the second comparison, X0 takes the value of ```MAX(X0, X3)``` which is equivalent to ```MAX(X1, X2, X3)```.
