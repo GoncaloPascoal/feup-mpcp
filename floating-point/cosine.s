@@ -10,7 +10,7 @@ const5: .double 2.75573192239859e-7
 .global COSINE
 .type COSINE, "function"
 
-// Approximates the cosine of an angle given in radians (0 to pi)
+// Approximates the cosine of an angle given in radians (0 to pi/2)
 
 COSINE:
 			STP X29, X30, [SP, #-16]!
